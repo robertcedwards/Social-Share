@@ -37,7 +37,18 @@ title: Blogging Like a Hacker
   js.src = "http://connect.facebook.net/en_US/all.js#xfbml=1&appId=184824581637909";
   fjs.parentNode.insertBefore(js, fjs);
 }(document, 'script', 'facebook-jssdk'));</script>
-
+<script src="http://robertcedwards.github.com/Social-Share/javascripts/ZeroClipboard.js"></script>
+<script>
+ZeroClipboard.setMoviePath('ZeroClipboard.swf');
+var clip = new ZeroClipboard.Client();
+clip.setText('');
+clip.addEventListener('mouseDown', function(){
+    var pre = document.getElementById('pre');
+    clip.setText(pre.innerHTML);
+    alert('Text copied');
+});
+clip.glue('copy');
+</script>
   </head>
   <body>
     <div class="navbar navbar-fixed-top">
