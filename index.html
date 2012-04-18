@@ -28,7 +28,6 @@
 
   </head>
   <body>
-   <div class="container-fluid"> 
     <div class="navbar navbar-fixed-top">
       <div class="navbar-inner">
         <div class="container">
@@ -50,12 +49,11 @@
         </div>
 
       </div>
+   <div class="container-fluid wrapper"> 
       <div class="row-fluid">
-        <div class="span6">
+        <div class="span4">
             <h3>Facebook Like Buttons</h3>
-            <p>Facebook Like </p>
-            <div class="fb-like" data-send="false" data-width="450" data-show-faces="false"></div>
-            <p>Javascript Function</p>
+<div class="fb-like" data-send="false" data-layout="button_count" data-width="450" data-show-faces="false"></div>            <p>Javascript Function</p>
             <pre>&lt;div id="fb-root"&gt;&lt;/div&gt;          
 &lt;script&gt;(function(d, s, id) {
   var js, fjs = d.getElementsByTagName(s)[0];
@@ -66,18 +64,41 @@
 }(document, 'script', 'facebook-jssdk'));
 &lt;/script&gt;
 </pre>
-            <pre>&lt;div class="fb-like" data-send="true" data-width="450" data-show-faces="true"&gt;&lt;/div&gt;</pre>
+            <pre>&lt;div class="fb-like" data-send="false" data-layout="button_count" data-width="450" data-show-faces="false"&gt;&lt;/div&gt;</pre>
         </div>    
-        <div class="span6">
+        <div class="span4">
             <h3>Twitter Share Buttons</h3>
-            <p>Tweet Button</p>
-            <a href="https://twitter.com/share" class="twitter-share-button">Tweet</a>
+            <div><a href="https://twitter.com/share" class="twitter-share-button">Tweet</a></div>
               <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0];if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src="http://platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");</script>
             <p>Javascript Function</p>
             <pre>&lt;script&gt;!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0];if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src="//platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");&lt;/script&gt;</pre>
             <pre>&lt;a href="https://twitter.com/share" class="twitter-share-button"&gt;Tweet&lt;/a&gt;</pre>
         </div>    
+        <div class="span4">
+            <h3>Google +1 Buttons</h3>
+            <!-- Place this tag where you want the +1 button to render -->
+<div class="g-plusone"></div>
 
+<!-- Place this render call where appropriate -->
+<script type="text/javascript">
+  (function() {
+    var po = document.createElement('script'); po.type = 'text/javascript'; po.async = true;
+    po.src = 'https://apis.google.com/js/plusone.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(po, s);
+  })();
+</script>
+            <p>Javascript Function</p>
+            <pre>&lt;script type="text/javascript"&gt;
+  (function() {
+    var po = document.createElement('script'); po.type = 'text/javascript'; po.async = true;
+    po.src = 'https://apis.google.com/js/plusone.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(po, s);
+  })();
+&lt;/script&gt;
+</pre>
+            <pre>&lt;div class="g-plusone"&gt;&lt;/div&gt;</pre>
+
+        </div>    
       </div>
 
     </div>    <!--[if !IE]><script>fixScale(document);</script><!--<![endif]-->
