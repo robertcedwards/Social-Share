@@ -66,28 +66,27 @@ title: Blogging Like a Hacker
   js = d.createElement(s); js.id = id;
   js.src = "//connect.facebook.net/en_US/all.js#xfbml=1&appId=184824581637909";
   fjs.parentNode.insertBefore(js, fjs);
-}(document, 'script', 'facebook-jssdk'));</script>
+}(document, 'script', 'facebook-jssdk'));
+</script>
 {% endhighlight %}
         </div>    
         <div class="span4">
             <h3>Twitter Share Buttons</h3>
             <div><a href="https://twitter.com/share" class="twitter-share-button">Tweet</a></div>
-              <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0];if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src="http://platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");</script>
+              <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0];if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src="http://platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");
+              </script>
+            <code>&lt;a href="https://twitter.com/share" class="twitter-share-button"&gt;Tweet&lt;/a&gt;</code>
+
 {% highlight javascript %}
-            <a href="https://twitter.com/share" class="twitter-share-button">Tweet</a></div>
               <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0];if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src="http://platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");</script>
 {% endhighlight %}
             
-            <code>&lt;a href="https://twitter.com/share" class="twitter-share-button"&gt;Tweet&lt;/a&gt;</code>
         </div>    
         <div class="span4">
             <h3>Google +1 Buttons</h3>
-            <!-- Place this tag where you want the +1 button to render -->
-<div class="g-plusone"></div>
-
-<!-- Place this render call where appropriate -->
+              <div class="g-plusone"></div>
+              <code>&lt;div class="g-plusone"&gt;&lt;/div&gt;</code>
 {% highlight javascript %}
-
 <script type="text/javascript">
   (function() {
     var po = document.createElement('script'); po.type = 'text/javascript'; po.async = true;
@@ -96,17 +95,6 @@ title: Blogging Like a Hacker
   })();
 </script>
 {% endhighlight %}
-
-            
-            <pre>&lt;script type="text/javascript"&gt;
-  (function() {
-    var po = document.createElement('script'); po.type = 'text/javascript'; po.async = true;
-    po.src = 'https://apis.google.com/js/plusone.js';
-    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(po, s);
-  })();
-&lt;/script&gt;
-</pre>
-            <pre>&lt;div class="g-plusone"&gt;&lt;/div&gt;</pre>
 
         </div>    
       </div>
