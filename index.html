@@ -37,18 +37,7 @@ title: Blogging Like a Hacker
   js.src = "http://connect.facebook.net/en_US/all.js#xfbml=1&appId=184824581637909";
   fjs.parentNode.insertBefore(js, fjs);
 }(document, 'script', 'facebook-jssdk'));</script>
-<script src="http://robertcedwards.github.com/Social-Share/javascripts/ZeroClipboard.js"></script>
-<script>
-ZeroClipboard.setMoviePath('http://robertcedwards.github.com/Social-Share/javascripts/ZeroClipboard.swf');
-var clip = new ZeroClipboard.Client();
-clip.setText('');
-clip.addEventListener('mouseDown', function(){
-    var pre = document.getElementById('pre');
-    clip.setText(pre.innerHTML);
-    alert('Text copied');
-});
-clip.glue('copy');
-</script>
+
   </head>
   <body>
     <div class="navbar navbar-fixed-top">
@@ -82,15 +71,7 @@ clip.glue('copy');
               
               <code>&lt;div id="fb-root"&gt;&lt;/div&gt;</code>
               <h4>Javascript</h4>
-{% highlight javascript linenos %}
-(function(d, s, id) {
-    varjs, fjs = d.getElementsByTagName(s)[0];
-    if (d.getElementById(id)) return;
-    js = d.createElement(s);
-    js.id = id;
-    js.src = "//connect.facebook.net/en_US/all.js#xfbml=1&appId=184824581637909";
-    fjs.parentNode.insertBefore(js, fjs);
-})(document, "script", "facebook-jssdk");{% endhighlight %}
+              <script src="https://gist.github.com/2411178.js?file=facebookbuttons.js"></script>
         </div>    
         <div class="span4">
             <h3>Twitter Share Buttons</h3>
@@ -101,17 +82,7 @@ clip.glue('copy');
               <h4>HTML</h4>
             <code>&lt;a href="https://twitter.com/share" class="twitter-share-button"&gt;Tweet&lt;/a&gt;</code>
               <h4>Javascript</h4>
-{% highlight javascript linenos %}
-!function(d, s, id) {
-    var js, fjs = d.getElementsByTagName(s)[0];
-    if (!d.getElementById(id)) {
-        js = d.createElement(s);
-        js.id = id;
-        js.src = "http://platform.twitter.com/widgets.js";
-        fjs.parentNode.insertBefore(js, fjs);
-    }
-}(document, "script", "twitter-wjs");
-{% endhighlight %}
+              <script src="https://gist.github.com/2411151.js?file=twitter.js"></script>
             
         </div>    
         <div class="span4">
@@ -120,16 +91,7 @@ clip.glue('copy');
               <h4>HTML</h4>
               <code>&lt;div class="g-plusone"&gt;&lt;/div&gt;</code>
               <h4>Javascript</h4>
-{% highlight javascript linenos %}
-(function() {
-    var po = document.createElement("script");
-    po.type = "text/javascript";
-    po.async = true;
-    po.src = "https://apis.google.com/js/plusone.js";
-    var s = document.getElementsByTagName("script")[0];
-    s.parentNode.insertBefore(po, s);
-})();{% endhighlight %}
-
+              <script src="https://gist.github.com/2411180.js?file=google+1.js"></script>
         </div>    
       </div>
 
