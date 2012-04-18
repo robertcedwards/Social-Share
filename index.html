@@ -73,13 +73,13 @@ title: Blogging Like a Hacker
               <h4>Javascript</h4>
 {% highlight javascript %}
 (function(d, s, id) {
-  var js, fjs = d.getElementsByTagName(s)[0];
-  if (d.getElementById(id)) return;
-  js = d.createElement(s); js.id = id;
-  js.src = "//connect.facebook.net/en_US/all.js#xfbml=1&appId=184824581637909";
-  fjs.parentNode.insertBefore(js, fjs);
-}(document, 'script', 'facebook-jssdk'));
-{% endhighlight %}
+    varjs, fjs = d.getElementsByTagName(s)[0];
+    if (d.getElementById(id)) return;
+    js = d.createElement(s);
+    js.id = id;
+    js.src = "//connect.facebook.net/en_US/all.js#xfbml=1&appId=184824581637909";
+    fjs.parentNode.insertBefore(js, fjs);
+})(document, "script", "facebook-jssdk");{% endhighlight %}
         </div>    
         <div class="span4">
             <h3>Twitter Share Buttons</h3>
@@ -91,7 +91,15 @@ title: Blogging Like a Hacker
             <code>&lt;a href="https://twitter.com/share" class="twitter-share-button"&gt;Tweet&lt;/a&gt;</code>
               <h4>Javascript</h4>
 {% highlight javascript %}
-!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0];if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src="http://platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");
+!function(d, s, id) {
+    var js, fjs = d.getElementsByTagName(s)[0];
+    if (!d.getElementById(id)) {
+        js = d.createElement(s);
+        js.id = id;
+        js.src = "http://platform.twitter.com/widgets.js";
+        fjs.parentNode.insertBefore(js, fjs);
+    }
+}(document, "script", "twitter-wjs");
 {% endhighlight %}
             
         </div>    
@@ -102,12 +110,14 @@ title: Blogging Like a Hacker
               <code>&lt;div class="g-plusone"&gt;&lt;/div&gt;</code>
               <h4>Javascript</h4>
 {% highlight javascript %}
-  (function() {
-    var po = document.createElement('script'); po.type = 'text/javascript'; po.async = true;
-    po.src = 'https://apis.google.com/js/plusone.js';
-    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(po, s);
-  })();
-{% endhighlight %}
+(function() {
+    var po = document.createElement("script");
+    po.type = "text/javascript";
+    po.async = true;
+    po.src = "https://apis.google.com/js/plusone.js";
+    var s = document.getElementsByTagName("script")[0];
+    s.parentNode.insertBefore(po, s);
+})();{% endhighlight %}
 
         </div>    
       </div>
