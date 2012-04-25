@@ -14,6 +14,10 @@ title: Blogging Like a Hacker
     <script src="http://robertcedwards.github.com/Social-Share/javascripts/bootstrap.min.js"></script>
     <link rel="stylesheet" href="http://robertcedwards.github.com/Social-Share/stylesheets/bootstrap.min.css">
     <script src="javascripts/respond.js"></script>
+    <script type="text/javascript">      $("input").keyup(function () {
+      var value = $(this).val();
+      $("p").text(value);
+    }).keyup();</script>
     <script type="text/javascript">
   (function() {
     var po = document.createElement('script'); po.type = 'text/javascript'; po.async = true;
@@ -37,10 +41,7 @@ title: Blogging Like a Hacker
   js.src = "http://connect.facebook.net/en_US/all.js#xfbml=1&appId=184824581637909";
   fjs.parentNode.insertBefore(js, fjs);
 }(document, 'script', 'facebook-jssdk'));
-      $("input").keyup(function () {
-      var value = $(this).val();
-      $("p").text(value);
-    }).keyup();
+
 </script>
 
   </head>
@@ -68,7 +69,7 @@ title: Blogging Like a Hacker
       </div>
    <div class="container-fluid wrapper"> 
       <div class="row-fluid">
-      <div class="span4">
+      <div class="span12">
           <input type="text" value="Your Facebook APP ID"/>
           <p></p>
 
