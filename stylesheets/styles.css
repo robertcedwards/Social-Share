@@ -846,13 +846,23 @@ cite{display: block;
 font-size: 13px;
 font-style: normal;
 margin: 5px 0 0 0;}
+
 #pinitcodeblock{margin-bottom: 30px;
 padding: 10px;
 border: 1px solid #C4DDEF;
 background: #DAECF6;}
+
 #pinitcode, #pinitscript{height: 8em;
 width: 333px;
 padding: 5px;
 font-size: 14px;
 color: #666;
+}
+#Codegenerator .line input, #Codegenerator .line textarea{
+font-size: 14px;
+height: 3.2em;
+width: 337px;
+margin-top: 4px;
+padding: 4px;
+border: 1px solid #AAA;
 }
