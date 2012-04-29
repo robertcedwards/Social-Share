@@ -41,9 +41,8 @@ title: Blogging Like a Hacker
   js.src = "http://connect.facebook.net/en_US/all.js#xfbml=1&appId=184824581637909";
   fjs.parentNode.insertBefore(js, fjs);
 }(document, 'script', 'facebook-jssdk'));
-
 </script>
-
+<script type="text/javascript" src="//assets.pinterest.com/js/pinit.js"></script>
   </head>
   <body>
     <div class="navbar navbar-fixed-top">
@@ -67,6 +66,7 @@ title: Blogging Like a Hacker
         </div>
 
       </div>
+  </div>    
    <div class="container-fluid wrapper"> 
       <div class="row-fluid">
     
@@ -79,6 +79,29 @@ title: Blogging Like a Hacker
               <pre>&lt;div id="fb-root"&gt;&lt;/div&gt;</pre>
               <h4>Javascript</h4>
               <script src="https://gist.github.com/2411178.js?file=facebookbuttons.js"></script>
+              
+<ul>
+  <li><code>href</code> - the URL to like. The XFBML version defaults to the current page. </li>
+  <li><code>send</code> - specifies whether to include a <a href="http://developers.facebook.com/docs/reference/plugins/send/">Send button</a> with the Like button. This only works with the XFBML version. </li>
+  <li><code>layout</code> - there are three options.
+  <ul>
+    <li><code>standard</code> - displays social text to the right of the button and friends' profile photos below. Minimum width: 225 pixels. Minimum increases by 40px if action is 'recommend' by and increases by 60px if send is 'true'. Default width: 450 pixels. Height: 35 pixels (without photos) or 80 pixels (with photos). </li>
+    <li><code>button_count</code> - displays the total number of likes to the right of the button. Minimum width: 90 pixels. Default width: 90 pixels. Height: 20 pixels. </li>
+    <li><code>box_count</code> - displays the total number of likes above the button. Minimum width: 55 pixels. Default width: 55 pixels. Height: 65 pixels.</li>
+  </ul>
+  </li>
+  <li><code>show_faces</code> - specifies whether to display profile photos below the button (standard layout only) </li>
+  <li><code>width</code> - the width of the Like button. </li>
+  <li><code>action</code> - the verb to display on the button. Options: 'like', 'recommend' </li>
+  <li><code>font</code> - the font to display in the button. Options: 'arial', 'lucida grande', 'segoe ui', 'tahoma', 'trebuchet ms', 'verdana' </li>
+  <li><code>colorscheme</code> - the color scheme for the like button. Options: 'light', 'dark' </li>
+  <li><code>ref</code> - a label for tracking referrals; must be less than 50 characters and can contain alphanumeric characters and some punctuation (currently +/=-.:_). The ref attribute causes two parameters to be added to the referrer URL when a user clicks a link from a stream story about a Like action:
+  <ul>
+    <li><code>fb_ref</code> - the ref parameter </li>
+    <li><code>fb_source</code> - the stream type ('home', 'profile', 'search', 'ticker', 'tickerdialog' or 'other') in which the click occurred and the story type ('oneline' or 'multiline'), concatenated with an underscore.</li>
+  </ul>
+  </li>
+</ul>
         </div>    
         <div class="span4">
             <h3>Twitter Share Buttons</h3>
@@ -90,7 +113,28 @@ title: Blogging Like a Hacker
             <pre>&lt;a href="https://twitter.com/share" class="twitter-share-button"&gt;Tweet&lt;/a&gt;</pre>
               <h4>Javascript</h4>
               <script src="https://gist.github.com/2411151.js?file=twitter.js"></script>
-            
+<h2 id="properties">Properties</h2>
+<div class="section">
+  <p>There are several properties for the Tweet Button which allow you to customize its behavior. While the Tweet Button will work without any of these properties, using them allows you to provide default values for the user to Tweet. If the query string, data source or link source are not provided the Tweet Button will use the default values available from the web page and referrer information.</p>
+
+  <p>To learn more about each property and to see <a href="#Examples">ways you can use them</a>, see the examples further down this page.</p>
+
+  <h3 class="properties">Properties which can be used by all types of the Tweet Button</h3>
+  <p>The properties in this table can be used by the Javascript, IFRAME and build your own Tweet Buttons. Each property is a query string parameter for the <tt>https://twitter.com/share</tt> URL.</p>
+
+
+  <h3>Properties which can be used by the Javascript Tweet Button</h3>
+  <p>The properties in this table can only be used by the Javascript Tweet Button. When used they provide additional places the Tweet Button can look for information on what to pre fill the Tweet with. The Tweet Button looks for property values in the priority order given in the table. For example when looking for the URL to use, the Tweet Button will:</p>
+
+  <ol>
+    <li>Look for <tt>url</tt> in the share link query string.</li>
+    <li>If not found, look for the <tt>data-url</tt> attribute of the Tweet Button anchor tag</li>
+    <li>If not found, look for the <tt>rel="canonical"</tt> <tt>link</tt> tag in the <tt>head</tt> of the document</li>
+    <li>If not found use the URL of the webpage</li>
+  </ol>
+
+
+</div>
         </div>    
         <div class="span4">
             <h3>Google +1 Buttons</h3>
@@ -99,8 +143,305 @@ title: Blogging Like a Hacker
               <pre>&lt;div class="g-plusone"&gt;&lt;/div&gt;</pre>
               <h4>Javascript</h4>
               <script src="https://gist.github.com/2411180.js?file=google+1.js"></script>
+        <section id="configuration">
+  <h2>Configuration</h2>
+
+  <h3 id="target-url">Setting the +1 Target URL</h3>
+
+  <p>
+    The URL that is +1'd is determined by one of three things, in this order:
+  </p>
+  <dl>
+    <dt>
+      1. The button's href attribute
+    </dt>
+    <dd>
+      This attribute explicitly defines the +1 target URL.
+    </dd>
+
+    <dt>
+      2. The page's <code>&lt;link rel="canonical" ... /&gt;</code> tag
+    </dt>
+    <dd>
+      If the +1 button's href attribute is not provided, Google will use the page's canonical URL.
+      For more information on defining the canonical URL for a page,
+      see <a href="http://www.google.com/support/webmasters/bin/answer.py?answer=139066">this
+      help article</a>.</dd>
+
+    <dt>
+      3. The URL provided by <code>document.location.href</code> (not recommended)
+    </dt>
+    <dd>
+      If neither of these pieces of data are present, Google will use the URL of the page as found in
+      the DOM. Because this URL might contain session IDs, anchors, or other parameters that are not
+      actually part of the canonical URL, we highly recommend either setting the <code>href</code>
+      attribute for the +1 button or adding a <code>&lt;link rel="canonical" ...&gt;</code> tag to
+      your page.
+    </dd>
+
+  </dl>
+
+  <aside class="note">
+    <strong>Note:</strong> The +1 is a public action and must be performed on a public URL. If you
+    attempt to +1 a URL that is not public, an error will occur.
+  </aside>
+
+
+  <h3 id="script-parameters">Script Tag Parameters</h3>
+
+  <p>
+    These parameters are defined within the <code>&lt;script /&gt;</code> element and control
+    the language and button loading across the entire web page.
+  </p>
+
+
+  <h3 id="plusonetag-parameters">+1 Tag Attributes</h3>
+
+  <p>
+    These parameters control settings for each button. You can set these parameters as attribute/value
+    pairs on <a href="#plusonetag">+1 button tags</a>, or as key/value pairs in a call
+    to <code><a href="#jsapi">gapi.plusone.render</a></code>.
+  </p>
+
+  <h3 id="button-sizes">Button Sizes</h3>
+
+  <p>
+    Heights below the smallest supported height render as the smallest supported height.
+    Other heights render the largest button that will fit and vertically center that icon in
+    the requested space. Given enough horizontal room, the small and standard buttons will render
+    the total number of +1's for that page.
+  </p>
+
+  <div id="buttonSizeExamples">
+  <table>
+    <thead>
+      <tr>
+        <th>Button type (annotation)</th>
+        <th>Example</th>
+        <th>Width (px)</th>
+        <th>Max width (px)</th>
+        <th>Height (px)</th>
+      </tr>
+    </thead>
+
+    <tbody>
+      <tr>
+        <td><b>Small</b> (none)</td>
+        <td><div id="___plusone_1" style="height: 15px; width: 24px; display: inline-block; text-indent: 0px; margin-top: 0px; margin-right: 0px; margin-bottom: 0px; margin-left: 0px; padding-top: 0px; padding-right: 0px; padding-bottom: 0px; padding-left: 0px; background-image: initial; background-attachment: initial; background-origin: initial; background-clip: initial; background-color: transparent; border-top-style: none; border-right-style: none; border-bottom-style: none; border-left-style: none; float: none; line-height: normal; font-size: 1px; vertical-align: baseline; background-position: initial initial; background-repeat: initial initial; "><iframe allowtransparency="true" frameborder="0" hspace="0" marginheight="0" marginwidth="0" scrolling="no" style="width: 24px; margin-top: 0px; margin-right: 0px; margin-bottom: 0px; margin-left: 0px; border-top-style: none; border-right-style: none; border-bottom-style: none; border-left-style: none; height: 15px; position: static; left: 0px; top: 0px; visibility: visible; " tabindex="0" vspace="0" width="100%" id="I2_1335402405057" name="I2_1335402405057" src="https://plusone.google.com/_/+1/fastbutton?url=https%3A%2F%2Fdevelopers.google.com%2F%2B%2Fplugins%2F%2B1button%2F%23target-url&amp;size=small&amp;count=true&amp;annotation=none&amp;hl=en&amp;jsh=m%3B%2F_%2Fapps-static%2F_%2Fjs%2Fgapi%2F__features__%2Frt%3Dj%2Fver%3D_Nc_z-1iyAg.en.%2Fsv%3D1%2Fam%3D!URqKYGaEp1yIwYMMkA%2Fd%3D1%2Frs%3DAItRSTOE738dLfm0BBZiWzTSPIAtKLQlSw#id=I2_1335402405057&amp;parent=https%3A%2F%2Fdevelopers.google.com&amp;rpctoken=515716881&amp;_methods=onPlusOne%2C_ready%2C_close%2C_open%2C_resizeMe%2C_renderstart" title="+1"></iframe></div></td>
+        <td>24</td>
+        <td class="empty-cell">—</td>
+        <td>15</td>
+      </tr>
+      <tr>
+        <td><b>Small</b> (bubble)</td>
+        <td><div id="___plusone_2" style="height: 15px; width: 70px; display: inline-block; text-indent: 0px; margin-top: 0px; margin-right: 0px; margin-bottom: 0px; margin-left: 0px; padding-top: 0px; padding-right: 0px; padding-bottom: 0px; padding-left: 0px; background-image: initial; background-attachment: initial; background-origin: initial; background-clip: initial; background-color: transparent; border-top-style: none; border-right-style: none; border-bottom-style: none; border-left-style: none; float: none; line-height: normal; font-size: 1px; vertical-align: baseline; background-position: initial initial; background-repeat: initial initial; "><iframe allowtransparency="true" frameborder="0" hspace="0" marginheight="0" marginwidth="0" scrolling="no" style="width: 70px; margin-top: 0px; margin-right: 0px; margin-bottom: 0px; margin-left: 0px; border-top-style: none; border-right-style: none; border-bottom-style: none; border-left-style: none; height: 15px; position: static; left: 0px; top: 0px; visibility: visible; " tabindex="0" vspace="0" width="100%" id="I3_1335402405065" name="I3_1335402405065" src="https://plusone.google.com/_/+1/fastbutton?url=https%3A%2F%2Fdevelopers.google.com%2F%2B%2Fplugins%2F%2B1button%2F%23target-url&amp;size=small&amp;count=true&amp;hl=en&amp;jsh=m%3B%2F_%2Fapps-static%2F_%2Fjs%2Fgapi%2F__features__%2Frt%3Dj%2Fver%3D_Nc_z-1iyAg.en.%2Fsv%3D1%2Fam%3D!URqKYGaEp1yIwYMMkA%2Fd%3D1%2Frs%3DAItRSTOE738dLfm0BBZiWzTSPIAtKLQlSw#id=I3_1335402405065&amp;parent=https%3A%2F%2Fdevelopers.google.com&amp;rpctoken=306196994&amp;_methods=onPlusOne%2C_ready%2C_close%2C_open%2C_resizeMe%2C_renderstart" title="+1"></iframe></div></td>
+        <td class="empty-cell">—</td>
+        <td>70</td>
+        <td>15</td>
+      </tr>
+      <tr>
+        <td><b>Medium</b> (none)</td>
+        <td><div id="___plusone_3" style="height: 20px; width: 32px; display: inline-block; text-indent: 0px; margin-top: 0px; margin-right: 0px; margin-bottom: 0px; margin-left: 0px; padding-top: 0px; padding-right: 0px; padding-bottom: 0px; padding-left: 0px; background-image: initial; background-attachment: initial; background-origin: initial; background-clip: initial; background-color: transparent; border-top-style: none; border-right-style: none; border-bottom-style: none; border-left-style: none; float: none; line-height: normal; font-size: 1px; vertical-align: baseline; background-position: initial initial; background-repeat: initial initial; "><iframe allowtransparency="true" frameborder="0" hspace="0" marginheight="0" marginwidth="0" scrolling="no" style="width: 32px; margin-top: 0px; margin-right: 0px; margin-bottom: 0px; margin-left: 0px; border-top-style: none; border-right-style: none; border-bottom-style: none; border-left-style: none; height: 20px; position: static; left: 0px; top: 0px; visibility: visible; " tabindex="0" vspace="0" width="100%" id="I4_1335402405072" name="I4_1335402405072" src="https://plusone.google.com/_/+1/fastbutton?url=https%3A%2F%2Fdevelopers.google.com%2F%2B%2Fplugins%2F%2B1button%2F%23target-url&amp;size=medium&amp;count=true&amp;annotation=none&amp;hl=en&amp;jsh=m%3B%2F_%2Fapps-static%2F_%2Fjs%2Fgapi%2F__features__%2Frt%3Dj%2Fver%3D_Nc_z-1iyAg.en.%2Fsv%3D1%2Fam%3D!URqKYGaEp1yIwYMMkA%2Fd%3D1%2Frs%3DAItRSTOE738dLfm0BBZiWzTSPIAtKLQlSw#id=I4_1335402405072&amp;parent=https%3A%2F%2Fdevelopers.google.com&amp;rpctoken=230560095&amp;_methods=onPlusOne%2C_ready%2C_close%2C_open%2C_resizeMe%2C_renderstart" title="+1"></iframe></div></td>
+        <td>32</td>
+        <td class="empty-cell">—</td>
+        <td>20</td>
+      </tr>
+      <tr>
+        <td><b>Medium</b> (bubble)</td>
+        <td><div id="___plusone_4" style="height: 20px; width: 90px; display: inline-block; text-indent: 0px; margin-top: 0px; margin-right: 0px; margin-bottom: 0px; margin-left: 0px; padding-top: 0px; padding-right: 0px; padding-bottom: 0px; padding-left: 0px; background-image: initial; background-attachment: initial; background-origin: initial; background-clip: initial; background-color: transparent; border-top-style: none; border-right-style: none; border-bottom-style: none; border-left-style: none; float: none; line-height: normal; font-size: 1px; vertical-align: baseline; background-position: initial initial; background-repeat: initial initial; "><iframe allowtransparency="true" frameborder="0" hspace="0" marginheight="0" marginwidth="0" scrolling="no" style="width: 90px; margin-top: 0px; margin-right: 0px; margin-bottom: 0px; margin-left: 0px; border-top-style: none; border-right-style: none; border-bottom-style: none; border-left-style: none; height: 20px; position: static; left: 0px; top: 0px; visibility: visible; " tabindex="0" vspace="0" width="100%" id="I5_1335402405080" name="I5_1335402405080" src="https://plusone.google.com/_/+1/fastbutton?url=https%3A%2F%2Fdevelopers.google.com%2F%2B%2Fplugins%2F%2B1button%2F%23target-url&amp;size=medium&amp;count=true&amp;hl=en&amp;jsh=m%3B%2F_%2Fapps-static%2F_%2Fjs%2Fgapi%2F__features__%2Frt%3Dj%2Fver%3D_Nc_z-1iyAg.en.%2Fsv%3D1%2Fam%3D!URqKYGaEp1yIwYMMkA%2Fd%3D1%2Frs%3DAItRSTOE738dLfm0BBZiWzTSPIAtKLQlSw#id=I5_1335402405080&amp;parent=https%3A%2F%2Fdevelopers.google.com&amp;rpctoken=192706945&amp;_methods=onPlusOne%2C_ready%2C_close%2C_open%2C_resizeMe%2C_renderstart" title="+1"></iframe></div></td>
+        <td class="empty-cell">—</td>
+        <td>90</td>
+        <td>20</td>
+      </tr>
+      <tr>
+        <td><b>Standard</b> (none)</td>
+        <td><div id="___plusone_5" style="height: 24px; width: 38px; display: inline-block; text-indent: 0px; margin-top: 0px; margin-right: 0px; margin-bottom: 0px; margin-left: 0px; padding-top: 0px; padding-right: 0px; padding-bottom: 0px; padding-left: 0px; background-image: initial; background-attachment: initial; background-origin: initial; background-clip: initial; background-color: transparent; border-top-style: none; border-right-style: none; border-bottom-style: none; border-left-style: none; float: none; line-height: normal; font-size: 1px; vertical-align: baseline; background-position: initial initial; background-repeat: initial initial; "><iframe allowtransparency="true" frameborder="0" hspace="0" marginheight="0" marginwidth="0" scrolling="no" style="width: 38px; margin-top: 0px; margin-right: 0px; margin-bottom: 0px; margin-left: 0px; border-top-style: none; border-right-style: none; border-bottom-style: none; border-left-style: none; height: 24px; position: static; left: 0px; top: 0px; visibility: visible; " tabindex="0" vspace="0" width="100%" id="I6_1335402405091" name="I6_1335402405091" src="https://plusone.google.com/_/+1/fastbutton?url=https%3A%2F%2Fdevelopers.google.com%2F%2B%2Fplugins%2F%2B1button%2F%23target-url&amp;size=standard&amp;count=true&amp;annotation=none&amp;hl=en&amp;jsh=m%3B%2F_%2Fapps-static%2F_%2Fjs%2Fgapi%2F__features__%2Frt%3Dj%2Fver%3D_Nc_z-1iyAg.en.%2Fsv%3D1%2Fam%3D!URqKYGaEp1yIwYMMkA%2Fd%3D1%2Frs%3DAItRSTOE738dLfm0BBZiWzTSPIAtKLQlSw#id=I6_1335402405091&amp;parent=https%3A%2F%2Fdevelopers.google.com&amp;rpctoken=147953691&amp;_methods=onPlusOne%2C_ready%2C_close%2C_open%2C_resizeMe%2C_renderstart" title="+1"></iframe></div></td>
+        <td>38</td>
+        <td class="empty-cell">—</td>
+        <td>24</td>
+      </tr>
+      <tr>
+        <td><b>Standard</b> (bubble)</td>
+        <td><div id="___plusone_6" style="height: 24px; width: 106px; display: inline-block; text-indent: 0px; margin-top: 0px; margin-right: 0px; margin-bottom: 0px; margin-left: 0px; padding-top: 0px; padding-right: 0px; padding-bottom: 0px; padding-left: 0px; background-image: initial; background-attachment: initial; background-origin: initial; background-clip: initial; background-color: transparent; border-top-style: none; border-right-style: none; border-bottom-style: none; border-left-style: none; float: none; line-height: normal; font-size: 1px; vertical-align: baseline; background-position: initial initial; background-repeat: initial initial; "><iframe allowtransparency="true" frameborder="0" hspace="0" marginheight="0" marginwidth="0" scrolling="no" style="width: 106px; margin-top: 0px; margin-right: 0px; margin-bottom: 0px; margin-left: 0px; border-top-style: none; border-right-style: none; border-bottom-style: none; border-left-style: none; height: 24px; position: static; left: 0px; top: 0px; visibility: visible; " tabindex="0" vspace="0" width="100%" id="I7_1335402405099" name="I7_1335402405099" src="https://plusone.google.com/_/+1/fastbutton?url=https%3A%2F%2Fdevelopers.google.com%2F%2B%2Fplugins%2F%2B1button%2F%23target-url&amp;size=standard&amp;count=true&amp;hl=en&amp;jsh=m%3B%2F_%2Fapps-static%2F_%2Fjs%2Fgapi%2F__features__%2Frt%3Dj%2Fver%3D_Nc_z-1iyAg.en.%2Fsv%3D1%2Fam%3D!URqKYGaEp1yIwYMMkA%2Fd%3D1%2Frs%3DAItRSTOE738dLfm0BBZiWzTSPIAtKLQlSw#id=I7_1335402405099&amp;parent=https%3A%2F%2Fdevelopers.google.com&amp;rpctoken=141217770&amp;_methods=onPlusOne%2C_ready%2C_close%2C_open%2C_resizeMe%2C_renderstart" title="+1"></iframe></div></td>
+        <td class="empty-cell">—</td>
+        <td>106</td>
+        <td>24</td>
+      </tr>
+      <tr>
+        <td><b>Tall</b> (none)</td>
+        <td><div id="___plusone_7" style="height: 24px; width: 50px; display: inline-block; text-indent: 0px; margin-top: 0px; margin-right: 0px; margin-bottom: 0px; margin-left: 0px; padding-top: 0px; padding-right: 0px; padding-bottom: 0px; padding-left: 0px; background-image: initial; background-attachment: initial; background-origin: initial; background-clip: initial; background-color: transparent; border-top-style: none; border-right-style: none; border-bottom-style: none; border-left-style: none; float: none; line-height: normal; font-size: 1px; vertical-align: baseline; background-position: initial initial; background-repeat: initial initial; "><iframe allowtransparency="true" frameborder="0" hspace="0" marginheight="0" marginwidth="0" scrolling="no" style="width: 50px; margin-top: 0px; margin-right: 0px; margin-bottom: 0px; margin-left: 0px; border-top-style: none; border-right-style: none; border-bottom-style: none; border-left-style: none; height: 24px; position: static; left: 0px; top: 0px; visibility: visible; " tabindex="0" vspace="0" width="100%" id="I8_1335402405107" name="I8_1335402405107" src="https://plusone.google.com/_/+1/fastbutton?url=https%3A%2F%2Fdevelopers.google.com%2F%2B%2Fplugins%2F%2B1button%2F%23target-url&amp;size=tall&amp;count=true&amp;annotation=none&amp;hl=en&amp;jsh=m%3B%2F_%2Fapps-static%2F_%2Fjs%2Fgapi%2F__features__%2Frt%3Dj%2Fver%3D_Nc_z-1iyAg.en.%2Fsv%3D1%2Fam%3D!URqKYGaEp1yIwYMMkA%2Fd%3D1%2Frs%3DAItRSTOE738dLfm0BBZiWzTSPIAtKLQlSw#id=I8_1335402405107&amp;parent=https%3A%2F%2Fdevelopers.google.com&amp;rpctoken=383529933&amp;_methods=onPlusOne%2C_ready%2C_close%2C_open%2C_resizeMe%2C_renderstart" title="+1"></iframe></div></td>
+        <td>50</td>
+        <td class="empty-cell">—</td>
+        <td>20</td>
+      </tr>
+      <tr>
+        <td><b>Tall</b> (bubble)</td>
+        <td><div id="___plusone_8" style="height: 60px; width: 50px; display: inline-block; text-indent: 0px; margin-top: 0px; margin-right: 0px; margin-bottom: 0px; margin-left: 0px; padding-top: 0px; padding-right: 0px; padding-bottom: 0px; padding-left: 0px; background-image: initial; background-attachment: initial; background-origin: initial; background-clip: initial; background-color: transparent; border-top-style: none; border-right-style: none; border-bottom-style: none; border-left-style: none; float: none; line-height: normal; font-size: 1px; vertical-align: baseline; background-position: initial initial; background-repeat: initial initial; "><iframe allowtransparency="true" frameborder="0" hspace="0" marginheight="0" marginwidth="0" scrolling="no" style="width: 50px; margin-top: 0px; margin-right: 0px; margin-bottom: 0px; margin-left: 0px; border-top-style: none; border-right-style: none; border-bottom-style: none; border-left-style: none; height: 60px; position: static; left: 0px; top: 0px; visibility: visible; " tabindex="0" vspace="0" width="100%" id="I9_1335402405117" name="I9_1335402405117" src="https://plusone.google.com/_/+1/fastbutton?url=https%3A%2F%2Fdevelopers.google.com%2F%2B%2Fplugins%2F%2B1button%2F%23target-url&amp;size=tall&amp;count=true&amp;hl=en&amp;jsh=m%3B%2F_%2Fapps-static%2F_%2Fjs%2Fgapi%2F__features__%2Frt%3Dj%2Fver%3D_Nc_z-1iyAg.en.%2Fsv%3D1%2Fam%3D!URqKYGaEp1yIwYMMkA%2Fd%3D1%2Frs%3DAItRSTOE738dLfm0BBZiWzTSPIAtKLQlSw#id=I9_1335402405117&amp;parent=https%3A%2F%2Fdevelopers.google.com&amp;rpctoken=578615877&amp;_methods=onPlusOne%2C_ready%2C_close%2C_open%2C_resizeMe%2C_renderstart" title="+1"></iframe></div></td>
+        <td>50</td>
+        <td class="empty-cell">—</td>
+        <td>60</td>
+      </tr>
+    </tbody>
+  </table>
+  </div>
+
+  <h3 id="inline-annotation">Inline Annotation Widths</h3>
+
+  <p>
+    The display of inline annotations varies based on the value of the <code>width</code> parameter.
+  </p>
+  <ul>
+    <li>If the width parameter is unspecified, a button and its inline annotation use 450px.</li>
+    <li>The inline annotation requires at least 120px to display. Lower values will be automatically resized. We recommend a width of at least 250px.</li>
+    <li>For other widths, the display of inline profile pictures and text will vary based on the defined width, as shown in the examples below.</li>
+  </ul>
+  <div id="inlineExamples">
+    <table>
+      <thead>
+        <tr><th>Width</th>
+        <th>+1 Button (www.google.com)</th>
+      </tr></thead>
+      <tbody>
+        <tr>
+          <td>250px</td>
+          <td><div id="___plusone_9" style="height: 24px; width: 250px; display: inline-block; text-indent: 0px; margin-top: 0px; margin-right: 0px; margin-bottom: 0px; margin-left: 0px; padding-top: 0px; padding-right: 0px; padding-bottom: 0px; padding-left: 0px; background-image: initial; background-attachment: initial; background-origin: initial; background-clip: initial; background-color: transparent; border-top-style: none; border-right-style: none; border-bottom-style: none; border-left-style: none; float: none; line-height: normal; font-size: 1px; vertical-align: baseline; background-position: initial initial; background-repeat: initial initial; "><iframe allowtransparency="true" frameborder="0" hspace="0" marginheight="0" marginwidth="0" scrolling="no" style="margin-top: 0px; margin-right: 0px; margin-bottom: 0px; margin-left: 0px; border-top-style: none; border-right-style: none; border-bottom-style: none; border-left-style: none; height: 24px; width: 250px; position: static; left: 0px; top: 0px; visibility: visible; " tabindex="0" vspace="0" width="100%" id="I10_1335402405125" name="I10_1335402405125" src="https://plusone.google.com/_/+1/fastbutton?url=http%3A%2F%2Fwww.google.com%2F&amp;size=standard&amp;count=true&amp;width=250&amp;annotation=inline&amp;hl=en&amp;jsh=m%3B%2F_%2Fapps-static%2F_%2Fjs%2Fgapi%2F__features__%2Frt%3Dj%2Fver%3D_Nc_z-1iyAg.en.%2Fsv%3D1%2Fam%3D!URqKYGaEp1yIwYMMkA%2Fd%3D1%2Frs%3DAItRSTOE738dLfm0BBZiWzTSPIAtKLQlSw#id=I10_1335402405125&amp;parent=https%3A%2F%2Fdevelopers.google.com&amp;rpctoken=364346735&amp;_methods=onPlusOne%2C_ready%2C_close%2C_open%2C_resizeMe%2C_renderstart" title="+1"></iframe></div></td>
+        </tr>
+        <tr>
+          <td>300px</td>
+          <td><div id="___plusone_10" style="height: 24px; width: 300px; display: inline-block; text-indent: 0px; margin-top: 0px; margin-right: 0px; margin-bottom: 0px; margin-left: 0px; padding-top: 0px; padding-right: 0px; padding-bottom: 0px; padding-left: 0px; background-image: initial; background-attachment: initial; background-origin: initial; background-clip: initial; background-color: transparent; border-top-style: none; border-right-style: none; border-bottom-style: none; border-left-style: none; float: none; line-height: normal; font-size: 1px; vertical-align: baseline; background-position: initial initial; background-repeat: initial initial; "><iframe allowtransparency="true" frameborder="0" hspace="0" marginheight="0" marginwidth="0" scrolling="no" style="margin-top: 0px; margin-right: 0px; margin-bottom: 0px; margin-left: 0px; border-top-style: none; border-right-style: none; border-bottom-style: none; border-left-style: none; height: 24px; width: 300px; position: static; left: 0px; top: 0px; visibility: visible; " tabindex="0" vspace="0" width="100%" id="I11_1335402405133" name="I11_1335402405133" src="https://plusone.google.com/_/+1/fastbutton?url=http%3A%2F%2Fwww.google.com%2F&amp;size=standard&amp;count=true&amp;width=300&amp;annotation=inline&amp;hl=en&amp;jsh=m%3B%2F_%2Fapps-static%2F_%2Fjs%2Fgapi%2F__features__%2Frt%3Dj%2Fver%3D_Nc_z-1iyAg.en.%2Fsv%3D1%2Fam%3D!URqKYGaEp1yIwYMMkA%2Fd%3D1%2Frs%3DAItRSTOE738dLfm0BBZiWzTSPIAtKLQlSw#id=I11_1335402405133&amp;parent=https%3A%2F%2Fdevelopers.google.com&amp;rpctoken=424502640&amp;_methods=onPlusOne%2C_ready%2C_close%2C_open%2C_resizeMe%2C_renderstart" title="+1"></iframe></div></td>
+        </tr>
+        <tr>
+          <td>350px</td>
+          <td><div id="___plusone_11" style="height: 24px; width: 350px; display: inline-block; text-indent: 0px; margin-top: 0px; margin-right: 0px; margin-bottom: 0px; margin-left: 0px; padding-top: 0px; padding-right: 0px; padding-bottom: 0px; padding-left: 0px; background-image: initial; background-attachment: initial; background-origin: initial; background-clip: initial; background-color: transparent; border-top-style: none; border-right-style: none; border-bottom-style: none; border-left-style: none; float: none; line-height: normal; font-size: 1px; vertical-align: baseline; background-position: initial initial; background-repeat: initial initial; "><iframe allowtransparency="true" frameborder="0" hspace="0" marginheight="0" marginwidth="0" scrolling="no" style="margin-top: 0px; margin-right: 0px; margin-bottom: 0px; margin-left: 0px; border-top-style: none; border-right-style: none; border-bottom-style: none; border-left-style: none; height: 24px; width: 350px; position: static; left: 0px; top: 0px; visibility: visible; " tabindex="0" vspace="0" width="100%" id="I12_1335402405144" name="I12_1335402405144" src="https://plusone.google.com/_/+1/fastbutton?url=http%3A%2F%2Fwww.google.com%2F&amp;size=standard&amp;count=true&amp;width=350&amp;annotation=inline&amp;hl=en&amp;jsh=m%3B%2F_%2Fapps-static%2F_%2Fjs%2Fgapi%2F__features__%2Frt%3Dj%2Fver%3D_Nc_z-1iyAg.en.%2Fsv%3D1%2Fam%3D!URqKYGaEp1yIwYMMkA%2Fd%3D1%2Frs%3DAItRSTOE738dLfm0BBZiWzTSPIAtKLQlSw#id=I12_1335402405144&amp;parent=https%3A%2F%2Fdevelopers.google.com&amp;rpctoken=287078958&amp;_methods=onPlusOne%2C_ready%2C_close%2C_open%2C_resizeMe%2C_renderstart" title="+1"></iframe></div></td>
+        </tr>
+        <tr>
+          <td>unspecified (450px)</td>
+          <td><div id="___plusone_12" style="height: 24px; width: 450px; display: inline-block; text-indent: 0px; margin-top: 0px; margin-right: 0px; margin-bottom: 0px; margin-left: 0px; padding-top: 0px; padding-right: 0px; padding-bottom: 0px; padding-left: 0px; background-image: initial; background-attachment: initial; background-origin: initial; background-clip: initial; background-color: transparent; border-top-style: none; border-right-style: none; border-bottom-style: none; border-left-style: none; float: none; line-height: normal; font-size: 1px; vertical-align: baseline; background-position: initial initial; background-repeat: initial initial; "><iframe allowtransparency="true" frameborder="0" hspace="0" marginheight="0" marginwidth="0" scrolling="no" style="margin-top: 0px; margin-right: 0px; margin-bottom: 0px; margin-left: 0px; border-top-style: none; border-right-style: none; border-bottom-style: none; border-left-style: none; height: 24px; width: 450px; position: static; left: 0px; top: 0px; visibility: visible; " tabindex="0" vspace="0" width="100%" id="I13_1335402405161" name="I13_1335402405161" src="https://plusone.google.com/_/+1/fastbutton?url=http%3A%2F%2Fwww.google.com%2F&amp;size=standard&amp;count=true&amp;annotation=inline&amp;hl=en&amp;jsh=m%3B%2F_%2Fapps-static%2F_%2Fjs%2Fgapi%2F__features__%2Frt%3Dj%2Fver%3D_Nc_z-1iyAg.en.%2Fsv%3D1%2Fam%3D!URqKYGaEp1yIwYMMkA%2Fd%3D1%2Frs%3DAItRSTOE738dLfm0BBZiWzTSPIAtKLQlSw#id=I13_1335402405161&amp;parent=https%3A%2F%2Fdevelopers.google.com&amp;rpctoken=208977780&amp;_methods=onPlusOne%2C_ready%2C_close%2C_open%2C_resizeMe%2C_renderstart" title="+1"></iframe></div></td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+
+  <h3 id="plus-snippet">Populating the +Snippet</h3>
+
+  <p>
+    After +1'ing a page, the user is given the option to share the page to Google+ via a
+    displayed <b>Share bubble</b>. This share bubble (along with the resulting Google+ activity post)
+    includes a preview, or <dfn><strong>+Snippet</strong></dfn>, that contains the page title, a brief
+    description of the page, and a thumbnail image. These pieces of data are extracted from
+    content found at the <a href="#target-url">target URL</a> and may be easily
+    specified by the owner of that content.
+  </p>
+  <p>
+    For detailed information and to customize your own snippet please see the <a href="/+/plugins/snippet">snippet documentation</a>.
+  </p>
+</section>
         </div>    
-      </div>
+
+<div class="span4">
+            <h3>Pinterest Pin It Button</h3>
+              <a href="http://pinterest.com/pin/create/button/" class="pin-it-button" count-layout="horizontal"><img border="0" src="http://assets.pinterest.com/images/PinExt.png" title="Pin It" /></a>
+              <form id="CodeGenerator">
+        <div class="line">
+            <label for="PinItUrlInput"><strong>URL</strong> of the page the pin is on:</label>
+            <input id="PinItUrlInput" type="text" name="url" value="" tabindex="1"/>
+        </div>
+        <div class="line">
+            <label for="PinItMediaInput"><strong>URL</strong> of the image to be pinned:</label>
+            <input id="PinItMediaInput" type="text" name="media" value="" tabindex="2"/>
+        </div>
+        <div class="line">
+            <label for="PinItDescriptionInput"><strong>Description</strong> of what they're pinning:</label>
+            <textarea id="PinItDescriptionInput" name="description" tabindex="3"></textarea>
+            <cite>Descriptions are optional but recommended; they will make pinning much easier for your users.</cite>
+        </div>
+    </form>
+
+    <div style="clear:both"></div>
+
+    <div id="PinItCodeBlock">
+      <h4>HTML</h4>
+        <p>Add this code to your page, right where you want the button to appear:</p>
+        <textarea id="PinItCode"></textarea>
+
+              <h4>Javascript</h4>
+               <p>Add this code to your page only once, directly above the closing <tt>&lt;/BODY></tt> tag:</p>
+       
+        <textarea id="PinItScript"></textarea>
+    </div>
+
+    <div style="clear: both;"></div>
+
+    <p>Important: you can have as many Pin It buttons on a page as you like, but you only need to include the JavaScript once!</p>
+    
+    <script type="text/javascript">
+        $(function() {
+            function updateCode() {
+
+                var pinUrl = "http://pinterest.com/pin/create/button/";
+                var jsUrl = "//assets.pinterest.com/js/pinit.js";
+                var imgUrl = "//assets.pinterest.com/images/PinExt.png";
+                var layout = $("#PinItLayoutInput").val();
+
+                var params = {
+                    url: $("#PinItUrlInput").val(),
+                    media: $("#PinItMediaInput").val(),
+                    description: $("#PinItDescriptionInput").val()
+                };
+
+                var sep = "?";
+                for (var k in params) {
+                    if (!params[k]) continue;
+                    pinUrl += sep + k + "=" + encodeURIComponent(params[k]);
+                    sep = "&";
+                }
+
+                var linkCode = '<a href="' + pinUrl + '" class="pin-it-button"' + 
+                        ' count-layout="' + layout + '"><img border="0" src="' + imgUrl + '" title="Pin It" /></a>';
+
+                $("#PinItCode").val(linkCode);
+
+                var linkScript = '<script type="text/javascript" src="' + jsUrl + '"></' + 'script>';
+
+                $("#PinItScript").val(linkScript);
+                
+            }
+
+            function updatePreview() {
+                $(".preview").hide();
+
+                var layout = $("#PinItLayoutInput").val();
+                if (layout == "none") {
+                    $("#NonePreview").show();
+                } else if (layout == "vertical") {
+                    $("#VerticalPreview").show();
+                } else { // also 'horizontal'
+                    $("#HorizontalPreview").show();
+                }
+
+                updateCode();
+            }
+
+            $("#PinItUrlInput").keyup(updateCode);
+            $("#PinItMediaInput").keyup(updateCode);
+            $("#PinItDescriptionInput").keyup(updateCode);
+            $("#PinItLayoutInput").change(updatePreview);
+
+            updatePreview();
+
+            $("#PinItCode").click(function() {
+                $(this).select();
+            });
+
+            $("#PinItScript").click(function() {
+                $(this).select();
+            });
+            
+        });
+    </script>
+</div>
+            
 
     </div>    <!--[if !IE]><script>fixScale(document);</script><!--<![endif]-->
   </div>
